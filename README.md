@@ -2,6 +2,8 @@
 
 ## Pong
 
+### Notas da atualização 1.2:
+* Agora foi criado uma intrudução para o menu
 
 ### Notas da atualização 1.1:
 * Desisti por enquanto de colocar som o no jogo.
