@@ -2,10 +2,9 @@
 
 import turtle
 from time import sleep
-#Para som funionar no linux ou mac
-#import os
-#Para som funionar no windows
-import winsound
+import random
+
+
 
 # Configurações iniciais
 Janela = turtle.Screen()
@@ -13,6 +12,14 @@ Janela.title("Pong por @JaJoVic")
 Janela.bgcolor("black") 
 Janela.setup(width=800, height = 600) 
 Janela.tracer(0)
+
+#Defini aleatoriamente o sentido em que a bolinha começa
+x_inicial = random.choice([-1,1])
+y_inicial = random.choice([-1,1])
+#Velocidade da bola
+Velocidade = 0.3 
+#Aumento de velocidade ao bater na barrinha
+Aceleracao = 1.1
 
 #Placa
 PlacarA = 0
@@ -44,8 +51,8 @@ Bola.color("white")
 Bola.penup()
 Bola.goto(0,0)
 #Movimento da bola (varia de acordo com o computador)
-Bola.dx = 0.3
-Bola.dy = 0.3
+Bola.dx = Velocidade* x_inicial
+Bola.dy = Velocidade* y_inicial
 
 #Caneta
 Caneta = turtle.Turtle()
@@ -59,24 +66,28 @@ Caneta.write(f'Jogador A : {PlacarA}  Jogador B : {PlacarB}', align="center", fo
 
 #Funções
 def BarraDSobe():
-    y = BarraD.ycor()
-    y += 20
-    BarraD.sety(y)
+    if BarraD.ycor() < 245:
+        y = BarraD.ycor()
+        y += 20
+        BarraD.sety(y)
 
 def BarraDDesce():
-    y = BarraD.ycor()
-    y -= 20
-    BarraD.sety(y)
+    if BarraD.ycor() > -240:
+        y = BarraD.ycor()
+        y -= 20
+        BarraD.sety(y)
 
 def BarraESobe():
-    y = BarraE.ycor()
-    y += 20
-    BarraE.sety(y)
+    if BarraE.ycor() < 245:
+        y = BarraE.ycor()
+        y += 20
+        BarraE.sety(y)
 
 def BarraEDesce():
-    y = BarraE.ycor()
-    y -= 20
-    BarraE.sety(y)
+    if BarraE.ycor() > -240:
+        y = BarraE.ycor()
+        y -= 20
+        BarraE.sety(y)
 
 #Comandos do teclado
 Janela.listen()
@@ -99,30 +110,23 @@ while True:
     if Bola.ycor() > 290:
         Bola.sety(290)
         Bola.dy *= -1
-        #Som no linux
-        #os.system("afplay pop.mp3&")
-        #Som no windows (NÃO FUNCIONA AINDA)
-        #winsound.PlaySound("Pong\som\moeda.waw",winsound.SND_ASYNC, winsound.SND_FILENAME)
+
     if Bola.ycor() < -290:
         Bola.sety(-290)
         Bola.dy *= -1
-        #Som no linux
-        #os.system("afplay pop.mp3&")
 
         #Eixo X
     if Bola.xcor() > 390:
         Bola.goto(0,0)
-        Bola.dx *= -1
+        Bola.dx = (Bola.dx/abs(Bola.dx))* Velocidade*-1
         PlacarA += 1
-        #Som no linux
-        #os.system("afplay pop.mp3&")
+        Bola.dy = Velocidade
 
     if Bola.xcor() < -390:
         Bola.goto(0,0)
-        Bola.dx *= -1
+        Bola.dx = (Bola.dx/abs(Bola.dx))* Velocidade*-1
         PlacarB += 1
-        #Som no linux
-        #os.system("afplay pop.mp3&")
+        Bola.dy = Velocidade
 
     Caneta.clear()
     Caneta.write(f'Jogador A : {PlacarA}  Jogador B : {PlacarB}', align="center", font =("Courier",20, "bold"))
@@ -131,12 +135,15 @@ while True:
 
     # Colisão barra e bola
         #Direita
-    if Bola.xcor() > 340 and Bola.xcor() < 350 and Bola.ycor() < BarraD.ycor() + 40 and Bola.ycor() > BarraD.ycor() - 40:
+    if Bola.xcor() > 340 and Bola.xcor() < 350 and Bola.ycor() < BarraD.ycor() + 60 and Bola.ycor() > BarraD.ycor() - 60:
         Bola.setx(340)
-        Bola.dx *= -1
+        #Quando a bola bate, ela acelera
+        Bola.dx *= -Aceleracao
+        Bola.dy *= Aceleracao
 
         #Esquerda
-    if Bola.xcor() < -340 and Bola.xcor() > -350 and Bola.ycor() < BarraE.ycor() + 40 and Bola.ycor() > BarraE.ycor() - 40:
+    if Bola.xcor() < -340 and Bola.xcor() > -350 and Bola.ycor() < BarraE.ycor() + 60 and Bola.ycor() > BarraE.ycor() - 60:
         Bola.setx(-340)
-        Bola.dx *= -1
+        Bola.dx *= -Aceleracao
+        Bola.dy *= Aceleracao
 
