@@ -1,17 +1,24 @@
-#Projeto PONG
-
 import turtle
 from time import sleep
 import random
 
 
+# Tema(cores do fundo e dos elementos)
+Claro = ['#FCFCFC','#343536']
+Escuro = ["#343536",'#FCFCFC']
+Tema = Claro
 
 # Configurações iniciais
 Janela = turtle.Screen()
 Janela.title("Pong por @JaJoVic")
-Janela.bgcolor("black") 
+Janela.bgcolor(Tema[0]) 
 Janela.setup(width=800, height = 600) 
 Janela.tracer(0)
+
+#Logo IMD
+Janela.addshape("Estilo/IMDLogo.gif")
+Logo = turtle.Turtle()
+Logo.shape("Estilo/IMDLogo.gif")
 
 #Defini aleatoriamente o sentido em que a bolinha começa
 x_inicial = random.choice([-1,1])
@@ -29,7 +36,7 @@ PlacarB = 0
 BarraD = turtle.Turtle()
 BarraD.speed(0)
 BarraD.shape("square")
-BarraD.color("white")
+BarraD.color(Tema[1])
 BarraD.shapesize(stretch_wid=5, stretch_len = 1)
 BarraD.penup()
 BarraD.goto(350,0)
@@ -38,7 +45,7 @@ BarraD.goto(350,0)
 BarraE = turtle.Turtle()
 BarraE.speed(0)
 BarraE.shape("square")
-BarraE.color("white")
+BarraE.color(Tema[1])
 BarraE.shapesize(stretch_wid=5, stretch_len = 1)
 BarraE.penup()
 BarraE.goto(-350,0)
@@ -47,7 +54,7 @@ BarraE.goto(-350,0)
 Bola = turtle.Turtle()
 Bola.speed(0)
 Bola.shape("square")
-Bola.color("white")
+Bola.color(Tema[1])
 Bola.penup()
 Bola.goto(0,0)
 #Movimento da bola (varia de acordo com o computador)
@@ -58,7 +65,7 @@ Bola.dy = Velocidade* y_inicial
 Caneta = turtle.Turtle()
 Caneta.speed(0)
 Caneta.shape("square")
-Caneta.color("white")
+Caneta.color(Tema[1])
 Caneta.penup()
 Caneta.hideturtle()
 Caneta.goto(0, 260)
@@ -129,7 +136,7 @@ while True:
         Bola.dy = Velocidade
 
     Caneta.clear()
-    Caneta.write(f'Jogador A : {PlacarA}  Jogador B : {PlacarB}', align="center", font =("Courier",20, "bold"))
+    Caneta.write(f'Jogador A : {PlacarA}  Jogador B : {PlacarB}', align="center", font =("Arial",20, "bold"))
 
 
 
