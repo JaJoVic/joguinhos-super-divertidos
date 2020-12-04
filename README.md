@@ -1,5 +1,13 @@
 # Joguinhos Divertidos
 
+## Jogo da Velha
+
+### Notas da atualização 1.0 (João Pedro):
+* Perdi algum tempo tentando configurar o editor de texto. O VS Code não estava funcionando bem, e o PyCharm não reconhecia as biblioteca turtle. Tentei várias soluções, mas nada deu muito certo. Minha hipótese é que isso tenha acontecido por causa do Linux talvez. Instalei o Windows, e as coisas parecem estar dando certo até agora.
+* Estou me baseando em dois vídeos para fazer o Jogo da Velha: [Tutorial Introdução ao módulo Turtle de python](https://www.youtube.com/watch?v=kq1xW8JSTyU&ab_channel=Cl%C3%A9sioMatias) e [Python Coding Tutorial: Build a Tic Tac Toe Game](https://www.youtube.com/watch?v=8eHpXLDhi6w&ab_channel=JuniLearning)
+* Estou estudando o código da moça ainda, e pesquisando sobre o turtle.
+* Pretendo, após isso, refatorar o código, se encontrar algumas incongruências ou aspectos que podem ser melhorados.
+
 ## Pong
 
 ### Notas da atualização 1.2:
