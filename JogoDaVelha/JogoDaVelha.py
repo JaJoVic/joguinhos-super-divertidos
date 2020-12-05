@@ -46,7 +46,7 @@ def drawO(x, y):
     screen.update()
 
 def addX(row, column):
-
+    drawX(-200 + 200 * column, 200 - 200 * row)
 
 drawer = turtle.Turtle()
 drawer.pensize(10)
