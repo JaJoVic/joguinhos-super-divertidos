@@ -25,11 +25,28 @@ def DesenhaTabuleiro():
 
 def DesenhaO(x,y):
     turtle.up()
-    turtle.goto(x,y-0.75)
-    turtle.seth(0)
+    turtle.goto(x+0.75,y+0.5)
     turtle.down()
-    turtle.circle(0.75, steps=100)
+    turtle.circle(0.25, steps=100)
+
+    Tela.update()
+
+def DesenhaX(x,y):
+    turtle.up()
+    turtle.goto(x+0.25,y+0.25)
+    turtle.down()
+    turtle.goto(x+0.75,y+0.75)
+    turtle.up()
+    turtle.goto(x+0.25,y+0.75)
+    turtle.down()
+    turtle.goto(x+0.75, y+0.25)
+
+    Tela.update()
 
 DesenhaTabuleiro()
+DesenhaO(1,2)
+DesenhaO(3,2)
+DesenhaX(2,2)
+DesenhaX(3,3)
 
 turtle.mainloop()
