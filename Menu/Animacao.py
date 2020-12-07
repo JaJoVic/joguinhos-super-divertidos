@@ -3,14 +3,13 @@ from time import sleep
 
 
 def Intro():
-    #Tema (Fundo, Elementos, Logo)
+    # Tema (Fundo, Elementos, Logo)
     Claro = ['#FCFCFC', '#343536', "Estilo/IMDLogoAzul.gif"]
-
     Tema = Claro
 
     # Configurações iniciais
     Janela = turtle.Screen()
-    Janela.title("Pong por @JaJoVic")
+    Janela.title("Super Jogos por @JaJoVic")
     Janela.bgcolor(Tema[0])
     Janela.setup(width=800, height=600)
 
@@ -46,7 +45,7 @@ def Intro():
     Logo.showturtle()
     Logo.setpos(0, -160)
 
-    # leva a tartaruga escondida ao canto
+    # Leva a tartaruga escondida ao canto
     Apresentador.hideturtle()
     Apresentador.speed(10)
     Apresentador.goto(-400, 150)

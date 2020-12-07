@@ -1,30 +1,55 @@
-# Joguinhos Divertidos
+# Super Jogos
 
-## Pong
+>### Notas de atualização:
+>* **Completo** (Part. Victor): A animação de iniciação do jogo, o menu e o Pong já estão todos integrados, bastar executar o *Principal.py*, quando o tema do menu é mudado o do jogo Pong também é.
+>* **README**: Fiz uma pequena atualização do README já preparando como uma parte do roteiro para o futuro vídeo.
 
-### Notas da atualização 1.2:
-* Agora foi criado uma intrudução para o menu
+# Table of Contents
+1. [Resumo](##Resumo)
+2. [Contexto](##Contexto)
+3. [Conceitos](#Conceitos)
+4. [Animação](#Animação)
+5. [Referências](##Referências)
 
-### Notas da atualização 1.1:
-* Desisti por enquanto de colocar som o no jogo.
-* Bug da bola atravessar os quadrados: CORRIGIDO
-* Bug da barra atravessar a borda : CORRIGIDO.
-* Agora o sentido do Y e X inicial da bolinha é aleatório.
-* Agora a velocidade das bolinhas aumenta toda vez que bate na barra, quando um ponto é marcado a velocidade volta à inicial. Agora o jogo está mais dinâmico.
+## Resumo
+Projeto desenvolvido durante a matéria Pensamento Computacional, ministrada pelo professor Daniel Sabino, na UFRN. Neste projeto desenvolvemos um sistema com 3 jogos utilizando a biblioteca *turtle* e a linguagem *Python*.
 
-### Notas da atualização 1.0:
-* Essa primeira pasta vscode contém apenas o caminho do programa python em minha máquina, não deveria estar ai. Acho que há alguma forma de contornar esse problema (talvez criando um arquivo com o próprio python em si em uma pasta ? não sei);
-* Outro problema é o áudio. A execução de cada aúdio varia nos sistemas Windows, Mac e Linux. Mas eu nem consegui colocar para rodar no meu Windows, tive alguns problemas;
-* Há alguns bugs ainda, a bolinha às vezes atravessa a barrinha;
-* **A velocidade varia**, dependendo da máquina a velocidade da bolinha muda não sei como ficou na máquina de vocês, mas na minha eu deixei assim os valores das variáveis que definem a velocidade. Para resolver esse problema eu pensei em talvez criarmos um local onde o jogador pode regular a velocidade padrão da bolinha.
+## Contexto
+Jogos são ótimas fontes de entrenimento. Neles podemos nos divertir, nos emocionar, ver a realidade de formas que só são possíveis neles e até aprender. Além disso, um código fonte simples de um jogo pode ser uma poderosa ferramenta para auxiliar no aprendizado de determinada linguagem de programação, pensando na simplicidade e no lado lúdico desta forma de arte foi criado o Super Jogos, um sistema desenvolvido em linguagem *python* e utilizando a biblioteca *turtle*.
 
-Bola.dx = 0.3
-Bola.dy = 0.3
+# Conceitos
+Agora iremos descrever os conceitos mais importantes que fizeram parte de parte do projeto. Para tudo funcionar é necessário antes de tudo uma janela. Para fazer isso utilizamos os seguintes comandos.
 
-### Referências
+```python
+    Janela = turtle.Screen()
+    Janela.title("Título da janela")
+    Janela.bgcolor("Cor do plano de fundo") #Nome da cor ou Hexadecimal (tavlez RGB?)
+    Janela.setup(width=Largura, height=Altura) #Númericos
+```
 
-[Inspiração do projeto](https://www.youtube.com/watch?v=XGf2GcyHPhc&t=19452s&ab_channel=freeCodeCamp.org)
+## Animação
+A animação ocorre assim que se inica o jogo, nela vemos uma tartaruguinha percorrendo a tela e por onde ela passa vai surgindo as palavras. Os conceitos mais fundamentais para compreender todo o projeto se encontram aqui. A figura abaixo demonstra como fica a janela no final da animação.
 
-[Som pop](https://freesound.org/people/Vilkas_Sound/sounds/463395/)
+![Imagem de Introdução](Documento\ImagemIntroducao.jpg)
 
-[Som moeda](https://freesound.org/people/ProjectsU012/sounds/341695/)
+Nela criamos uma tartaruga com nome apresentador. E atribuímos algumas características para ele ficar com essa forma.
+
+```python
+Apresentador = turtle.Turtle()
+Apresentador.shape("turtle") #Forma da tartaruga
+Apresentador.color("Cor da tartaruga")
+```
+Observer que no método *.shape()* podemos inserir diferentes formas para ela, como a de um arquivo .gif(é o único formato que turtle aceita), olhe o exemplo abaixo de como inserimos a logo no do *IMD* no projeto.
+
+```python
+Janela.addshape('SuaImagem.gif') #A logo é adicionada as formas possíveis
+Logo = turtle.Turtle()
+Logo.shape('SuaImagem.gif') #A tartaruga se transforma na logo
+```
+
+## Referências
+[Um breve tutorial do Turtle - Português](https://medium.com/reflex%C3%A3o-computacional/m%C3%B3dulo-turtle-d8949db55008)
+
+[Vídeo de inspiração do Pong - Inglês](https://www.youtube.com/watch?v=XGf2GcyHPhc&t=19452s&ab_channel=freeCodeCamp.org)
+
+[Vídeo de criação de um botão com Turtle - Inglês](https://www.youtube.com/watch?v=-XiZIEcDukY&ab_channel=RounakBhowmik)

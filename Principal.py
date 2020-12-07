@@ -15,7 +15,8 @@ Janela = turtle.Screen()
 Janela.title("Super Jogos - @JaJoVic")
 Janela.bgcolor(Tema[0])
 Janela.setup(width=800, height=600)
-Animacao.Intro() #Animação de introdução
+#Animação Inicial do Jogo
+Animacao.Intro()
 Janela.tracer(0)
 
 Botao = turtle.Turtle(visible=False)

@@ -32,7 +32,7 @@ def IniciarPong(Cor='Claro'):
     # Aumento de velocidade ao bater na barrinha
     Aceleracao = 1.1
 
-    # Placa
+    # Placar
     PlacarA = 0
     PlacarB = 0
 
@@ -196,5 +196,3 @@ def IniciarPong(Cor='Claro'):
             Logo.hideturtle()
             BotaoSair.clear()
             break
-
-# IniciarPong('Escuro')
