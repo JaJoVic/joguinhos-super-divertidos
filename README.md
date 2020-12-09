@@ -56,6 +56,7 @@ Caso deseje converter um arquivo para *.gif* nas referências tem um link.
 ## Menu
 
 Após a animação inicial aparece o menu nele podemos escolher qual jogo vamos iniciar, trocar o tema dos jogos entre claro ou escuro. Nessa parte sistema podemos analisar dois elementos fundamentais, a troca do tema e os botões. O segundo conceito você poderá ver na sessão **Jogo da Velha**.
+
 ![](Documento/Menu.jpg)
 
 ### Tema
