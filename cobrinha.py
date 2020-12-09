@@ -1,4 +1,5 @@
 import random
+from os import system, name
 
 
 def main():
@@ -54,6 +55,19 @@ def main():
 
     print()
     print("Tchau!")
+
+# ======================================================================
+
+
+def clear():
+
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
 
 # ======================================================================
 
@@ -137,6 +151,7 @@ def imprime_tabuleiro(nlinhas, ncols, x0, y0, d, maca):
          ate a cabeça; o di­gito menos significativo Ã© a direção na cabeça
 
     """
+    clear()
     print()
 
     for x in range(0, ncols + 2):
