@@ -38,12 +38,11 @@ def main():
 
         # Laço que controla a interação com o jogador
         direcao = 1
-        xm = 1
-        ym = 1
+        maca = [0, 0]
+        posicao_maca(nlinhas, ncols, maca)
         while direcao != 5:
             # mostra tabuleiro com a posição atual da cobrinha
-            maca(nlinhas, ncols, xm, ym)
-            imprime_tabuleiro(nlinhas, ncols, x0, y0, d, xm, ym)
+            imprime_tabuleiro(nlinhas, ncols, x0, y0, d, maca)
 
             # lê o número do proximo movimento que sera executado no jogo
             print("1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo")
@@ -51,7 +50,7 @@ def main():
 
             if direcao != 5:
                 # atualiza a posição atual da cobrinha
-                x0, y0, d = move(nlinhas, ncols, x0, y0, d, direcao, xm, ym)
+                x0, y0, d = move(nlinhas, ncols, x0, y0, d, direcao, maca)
 
     print()
     print("Tchau!")
@@ -80,9 +79,9 @@ def num_digitos(n):
 # ======================================================================
 
 
-def maca(nlinhas, ncols, x, y):
-    x = random.randint(1, nlinhas)
-    y = random.randint(1, ncols)
+def posicao_maca(nlinhas, ncols, maca):
+    maca[0] = random.randrange(0, nlinhas)
+    maca[1] = random.randrange(0, ncols)
 
 # ======================================================================
 
@@ -126,7 +125,7 @@ def pos_ocupada(nlinhas, ncols, x, y, x0, y0, d):
 # ======================================================================
 
 
-def imprime_tabuleiro(nlinhas, ncols, x0, y0, d, xm, ym):
+def imprime_tabuleiro(nlinhas, ncols, x0, y0, d, maca):
     """(int, int, int, int, int, int)
 
     Imprime o tabuleiro com a cobra.
@@ -149,8 +148,8 @@ def imprime_tabuleiro(nlinhas, ncols, x0, y0, d, xm, ym):
         print('#', end='')
 
         for x in range(0, ncols):
-            if (x == xm) and (y == ym):
-                if (xm != x0) and (ym != y0):
+            if (x == maca[0]) and (y == maca[1]):
+                if (maca[0] != x0) or (maca[1] != y0):
                     print('M', end='')
             elif x == x0 and y == y0:
                 print('C', end='')
@@ -170,7 +169,7 @@ def imprime_tabuleiro(nlinhas, ncols, x0, y0, d, xm, ym):
 # ======================================================================
 
 
-def move(nlinhas, ncols, x0, y0, d, direcao, xm, ym):
+def move(nlinhas, ncols, x0, y0, d, direcao, maca):
     """(int, int, int, int, int, int) -> int, int, int
 
     Move a cobra na direÃ§Ã£o dada.    
@@ -180,7 +179,7 @@ def move(nlinhas, ncols, x0, y0, d, direcao, xm, ym):
     mensagem apropriada: "COLISÃƒO COM SI MESMA" ou "COLISÃƒO COM A PAREDE"
 
     ENTRADAS
-    - nlinhas, ncols: nÃºmero de linhas e colunas do tabuleiro
+    - nlinhas, ncols: numero de linhas e colunas do tabuleiro
     - x0, y0: posiÃ§Ã£o da cabeÃ§a da cobra
     - d: sequÃªncia de deslocamentos que levam a posiÃ§Ã£o da cauda da cobra
          atÃ© a cabeÃ§a; o dÃ­gito menos significativo Ã© a direÃ§Ã£o na cabeÃ§a
@@ -205,9 +204,9 @@ def move(nlinhas, ncols, x0, y0, d, direcao, xm, ym):
     else:
         raise ValueError
 
-    if x0 == xm and y0 == ym:
-        d = d * 10 + 2
-        maca(nlinhas, ncols, xm, ym)
+    if x0 == maca[0] and y0 == maca[1]:
+        novo_d = novo_d * 10 + 2
+        posicao_maca(nlinhas, ncols, maca)
 
     if pos_ocupada(nlinhas, ncols, x0, y0, x0_ant, y0_ant, d):
         print("COLISÃO COM SI MESMA")
