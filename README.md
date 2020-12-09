@@ -34,7 +34,7 @@ while True: #Loop que mantém a janela aberta
 ## Animação
 A animação ocorre assim que se inica arquivo *principal.py* , nela vemos uma tartaruguinha percorrendo a tela e por onde ela passa vai surgindo as palavras. Os conceitos mais fundamentais para compreender todo o projeto se encontram aqui. A figura abaixo demonstra como fica a janela ao final da animação.
 
-![Imagem de Introdução](Documento\ImagemIntroducao.jpg)
+![](Documento/ImagemIntroducao.jpg)
 
 Nela criamos uma tartaruga com nome apresentador. E atribuímos algumas características para ele ficar com essa forma.
 
@@ -56,12 +56,12 @@ Caso deseje converter um arquivo para *.gif* nas referências tem um link.
 ## Menu
 
 Após a animação inicial aparece o menu nele podemos escolher qual jogo vamos iniciar, trocar o tema dos jogos entre claro ou escuro. Nessa parte sistema podemos analisar dois elementos fundamentais, a troca do tema e os botões. O segundo conceito você poderá ver na sessão **Jogo da Velha**.
-![Menu](Documento\Menu.jpg)
+![](Documento/Menu.jpg)
 
 ### Tema
 Basicamente, quando o botão do tema é clicado a janela apaga tudo (botões e logo) e desenha todos os elementos com outras cores, e ao iniciarmos o jogo ele estará com o mesmo tema do menu. Observe na figura abaixo, a mudança de cores que acontece, e a da logo também.
 
-![Temas](Documento\Temas.jpg)
+![](Documento/Temas.jpg)
 
 Para isso temos que compreender como o tema é armazenado, o que acontece após o botão ser pressionado, como funciona a eliminação dos elementos da tela e o reaparecimento deles. 
 
