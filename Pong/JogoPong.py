@@ -157,7 +157,7 @@ def IniciarPong(Cor='Claro'):
             Bola.sety(-290)
             Bola.dy *= -1
 
-            # Eixo X
+        # Eixo X
         if Bola.xcor() > 390:
             Bola.goto(0, 0)
             Bola.dx = (Bola.dx/abs(Bola.dx)) * Velocidade*-1
