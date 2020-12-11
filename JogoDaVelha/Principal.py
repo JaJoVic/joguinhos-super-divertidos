@@ -6,9 +6,11 @@ Tela.setworldcoordinates(0,0,5,5)
 Tela.tracer(0,0)
 turtle.hideturtle()
 
-GameOver = False
 JogaX = True
 JogaO = False
+Jogadas = 0
+GameOver = False
+Casas = [[0,0,0],[0,0,0],[0,0,0]]
 
 def DesenhaTabuleiro():
     turtle.pensize(10)    
@@ -113,14 +115,6 @@ def ConfereResultado():
         Tela.textinput("Game over!","Empate!")
         GameOver = True
 
-
 DesenhaTabuleiro()
 Tela.onclick(RegistraJogada)
-
-Jogadas = 0
-Casas = [[0,0,0],[0,0,0],[0,0,0]]
-
-    
-
 turtle.mainloop()
-
