@@ -1,5 +1,19 @@
 # Joguinhos Divertidos
 
+## Jogo da Velha
+
+### Notas da atualização 1.1 (João Pedro):
+* Consegui centralizar o "O". Estava tendo problemas com isso.
+* Pesquisando, achei um [código](https://pythonturtle.academy/tic-tac-toe-source-code-included/) interessante. Parece-me simples, mas vejo que pode ser melhorado (ao meu ver). Gostei da ideia de considerar coordenadas (e não pixels) para a tela. Acho que é mais intuitivo. Mesmo assim, mudei as coordenadas: agora, a janela é um plano cartesiano com início em (0,0) e término em (5,5). Também utilizei um `for` para desenhar o tabuleiro. Como alterei as coordenadas da tela, tive também de alterar as coordenadas com base nas quais os Os e os Xs serão desenhados. Por fim, testei, parece-me que o resultado está bom.
+* Resta fazer a lógica que verifica a vitória ou a derrota ou o empate
+* Também restam o event listeners para desenhar os Os e os Xs quando clicarmos na casa que queremos inseri-los
+
+### Notas da atualização 1.0 (João Pedro):
+* Perdi algum tempo tentando configurar o editor de texto. O VS Code não estava funcionando bem, e o PyCharm não reconhecia as biblioteca turtle. Tentei várias soluções, mas nada deu muito certo. Minha hipótese é que isso tenha acontecido por causa do Linux talvez. Instalei o Windows, e as coisas parecem estar dando certo até agora.
+* Estou me baseando em dois vídeos para fazer o Jogo da Velha: [Tutorial Introdução ao módulo Turtle de python](https://www.youtube.com/watch?v=kq1xW8JSTyU&ab_channel=Cl%C3%A9sioMatias) e [Python Coding Tutorial: Build a Tic Tac Toe Game](https://www.youtube.com/watch?v=8eHpXLDhi6w&ab_channel=JuniLearning)
+* Estou estudando o código da moça ainda, e pesquisando sobre o turtle.
+* Pretendo, após isso, refatorar o código, se encontrar algumas incongruências ou aspectos que podem ser melhorados.
+
 ## Pong
 
 ### Notas da atualização 1.2:
