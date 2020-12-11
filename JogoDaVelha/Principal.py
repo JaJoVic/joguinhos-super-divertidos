@@ -85,7 +85,7 @@ def ConfereResultado():
                 Tela.textinput("Game over!","O venceu!")
                 GameOver = True
 
-        elif Casas[0][i] == Casas[1][i] and Casas[1][i] == Casas[2][i] and Casas[2][i] == 0:
+        elif Casas[0][i] == Casas[1][i] and Casas[1][i] == Casas[2][i] and Casas[2][i] != 0:
             if Casas[2][i] == "X":
                 Tela.textinput("Game over!","X venceu!")
                 GameOver = True
@@ -101,7 +101,7 @@ def ConfereResultado():
             Tela.textinput("Game over!","O venceu!")
             GameOver = True
         
-    elif Casas[2][0] == Casas[1][1] and Casas[1][1] == Casas[0][2] and Casas[0][2] == "O":
+    elif Casas[2][0] == Casas[1][1] and Casas[1][1] == Casas[0][2] and Casas[0][2] != "O":
         if Casas[0][2] == "X":
             Tela.textinput("Game over!","X venceu!")
             GameOver = True
