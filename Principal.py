@@ -2,6 +2,7 @@ import turtle
 from time import sleep
 from Menu import Animacao
 from Pong import JogoPong
+from JogoDaVelha import JogoVelha
 
 
 #Tema (Fundo, Elementos)
@@ -46,7 +47,7 @@ def DesenharBotao(Botao, Mensagem="", BotaoX=0, BotaoY=0):
     Botao.end_fill()
     Botao.goto(BotaoX + 75, BotaoY + 15)
     Botao.pencolor(Tema[0])
-    if Mensagem == 'Tema: Claro/Escuro':
+    if Mensagem == 'Tema: Claro/Escuro' or Mensagem == 'Jogo da Velha':
         Botao.goto(BotaoX + 15, BotaoY + 15)
         Botao.write(Mensagem, "left", font=('Arial', 15, 'normal'))
     else:
@@ -69,8 +70,7 @@ def ClicarBotao(X, Y):
 
 
 # Criar botões
-Opcoes = ['Tema: Claro/Escuro', 'Pong', 'Jogo 2',
-          'Jogo 3', 'Sair']  # Nome dos botões
+Opcoes = ['Tema: Claro/Escuro', 'Pong', 'Jogo da Velha', 'Sair']  # Nome dos botões
 Inicio = [-100, 50, -75]  # X, Y e distância entre a origem de cada Botão
 CordBotoes = []  # Salva a coordenada inicial de cada botão a função ClicarBotao identificar
 
@@ -84,9 +84,38 @@ for Item in range(0, len(Opcoes)):
 def Limpar():
     Botao.clear()
     Logo.hideturtle()
+    Janela.clearscreen()
+
 
 
 def Preencher():
+    global Botao
+    global BotaoComp
+    global BotaoLarg
+    global Janela
+    global Logo
+        # Configurações iniciais
+    Janela = turtle.Screen()
+    Janela.title("Super Jogos - @JaJoVic")
+    Janela.bgcolor(Tema[0])
+    Janela.setup(width=800, height=600)
+    #Animação Inicial do Jogo
+    Janela.tracer(0)
+    
+    Botao = turtle.Turtle(visible=False)
+    Botao.pencolor(Tema[1])
+    Botao.fillcolor(Tema[1])
+
+    BotaoComp = 200
+    BotaoLarg = 50
+
+    # Logo IMD
+    Janela.addshape('Estilo/IMDLogoAzul.gif')
+    Janela.addshape('Estilo/IMDLogoBranco.gif')
+    Logo = turtle.Turtle()
+    Logo.penup()
+    Logo.sety(200)
+    Logo.shape(Tema[2])
     global CordBotoes
     CordBotoes = []
     Logo.shape(Tema[2])
@@ -119,4 +148,10 @@ while True:
             Tema = Claro
         Limpar()
         Preencher()
+    if Acao == 'Jogo da Velha':
+        Limpar()
+        JogoVelha.IniciarVelha(Tema[3])
+        break
+        #Preencher()
+        #Acao = ''
     Janela.onclick(ClicarBotao)
