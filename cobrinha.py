@@ -3,85 +3,50 @@ from os import system, name
 
 
 def main():
-
-    print()
-    print("=================================================")
-    print("         Bem-vindo ao Jogo da Cobrinha!          ")
-    print("=================================================")
-    print()
-
-    nlinhas = int(input('Número de linhas do tabuleiro : '))
-    ncols = int(input('Número de colunas do tabuleiro: '))
+    NumeroLinhas = int(input('Número de linhas do tabuleiro : '))
+    NumeroColunas = int(input('Número de colunas do tabuleiro: '))
     x0 = int(input('Posição x inicial da cobrinha : '))
     y0 = int(input('Posição y inicial da cobrinha : '))
-    t = int(input('Tamanho da cobrinha           : '))
+    t = int(input('Tamanho da cobrinha            : '))
 
-    # Verifica se corpo da cobrinha cabe na linha do tabuleiro,
-    # considerando a posição inicial escolhida para a cameçar
     if x0 - (t - 1) < 0:
-        # Não cabe
         print()
-        print("A COBRINHA NÃO PODE FICAR NA POSIÇÃO INICIAL INDICADA")
-
+        print("A não pode iniciar na posição informada")
     else:
-
-        ''' Inicia a variavel d indicando nela que t-1 partes do corpo
-            da cobrinha estão inicialmente alinhadas a  esquerda da cabeça.
-            Exemplos:
-               se t = 4, então devemos fazer d = 222
-               se t = 7, então devemos fazer d = 222222
-        '''
-        d = 0
+        CorpoCobrinha = 0
         i = 1
         while i <= t-1:
-            d = d * 10 + 2
+            CorpoCobrinha = CorpoCobrinha * 10 + 2
             i = i + 1
 
-        # Laço que controla a interação com o jogador
-        direcao = 1
-        maca = [0, 0]
-        posicao_maca(nlinhas, ncols, maca)
-        while direcao != 5:
-            # mostra tabuleiro com a posição atual da cobrinha
-            imprime_tabuleiro(nlinhas, ncols, x0, y0, d, maca)
-
-            # lê o número do proximo movimento que sera executado no jogo
+        Direcao = 1
+        Maca = [0, 0]
+        Posicao_Maca(NumeroLinhas, NumeroColunas, Maca)
+        while Direcao != 5:
+            Imprime_Tabuleiro(NumeroLinhas, NumeroColunas,
+                              x0, y0, CorpoCobrinha, Maca)
             print("1 - esquerda | 2 - direita | 3 - cima | 4 - baixo | 5 - sair do jogo")
-            direcao = int(input("Digite o número do seu proximo movimento: "))
+            Direcao = int(
+                input("Digite o número correspondente ao seu proximo movimento: "))
 
-            if direcao != 5:
-                # atualiza a posição atual da cobrinha
-                x0, y0, d = move(nlinhas, ncols, x0, y0, d, direcao, maca)
+            if Direcao != 5:
+                x0, y0, CorpoCobrinha = Move(NumeroLinhas, NumeroColunas,
+                                             x0, y0, CorpoCobrinha, Direcao, Maca)
 
     print()
-    print("Tchau!")
-
-# ======================================================================
+    print("Obrigada por Jogar!")
 
 
 def clear():
 
-    # for windows
     if name == 'nt':
         _ = system('cls')
 
-    # for mac and linux(here, os.name is 'posix')
     else:
         _ = system('clear')
 
-# ======================================================================
 
-
-def num_digitos(n):
-    """ (int) -> int
-
-    Devolve o numero de di­gitos de um numero.
-
-    ENTRADA
-    - n: numero a ser verificado
-
-    """
-
+def Num_Digitos(n):
     c = 1
     n //= 10
     while n > 0:
@@ -90,149 +55,98 @@ def num_digitos(n):
 
     return c
 
-# ======================================================================
+
+def Posicao_Maca(NumeroLinhas, NumeroColunas, Maca):
+    Maca[0] = random.randrange(0, NumeroLinhas)
+    Maca[1] = random.randrange(0, NumeroColunas)
 
 
-def posicao_maca(nlinhas, ncols, maca):
-    maca[0] = random.randrange(0, nlinhas)
-    maca[1] = random.randrange(0, ncols)
-
-# ======================================================================
-
-
-def pos_ocupada(nlinhas, ncols, x, y, x0, y0, d):
-    """(int, int, int, int, int, int, int) -> bool
-
-    Devolve True se alguma parte da cobra ocupa a posição (x,y) e
-    False no caso contrario.
-
-    ENTRADAS
-    - nlinhas, ncols: numero de linhas e colunas do tabuleiro
-    - x, y: posição a ser testada
-    - x0, y0: posição da cabeça da cobra
-    - d: sequencia de deslocamentos que levam a posição da cauda da cobra
-         ate a cabeça; o di­gito menos significativo Ã© a direção na cabeça
-
-    """
-
+def Pos_Ocupada(NumeroLinhas, NumeroColunas, x, y, x0, y0, CorpoCobrinha):
     if x == x0 and y == y0:
-        return True         # Posição esta na cabeça da cobra
+        return True
 
-    while d != 0:
-        direcao = d % 10
-        if direcao == 1:    # esquerda
+    while CorpoCobrinha != 0:
+        Direcao = CorpoCobrinha % 10
+        if Direcao == 1:
             x0 += 1
-        elif direcao == 2:  # direita
+        elif Direcao == 2:
             x0 -= 1
-        elif direcao == 3:  # cima
+        elif Direcao == 3:
             y0 += 1
-        elif direcao == 4:  # baixo
+        elif Direcao == 4:
             y0 -= 1
 
         if x == x0 and y == y0:
-            return True     # PosiÃ§Ã£o estÃ¡ corpo da cobra
+            return True
 
-        d //= 10
+        CorpoCobrinha //= 10
 
     return False
 
-# ======================================================================
 
-
-def imprime_tabuleiro(nlinhas, ncols, x0, y0, d, maca):
-    """(int, int, int, int, int, int)
-
-    Imprime o tabuleiro com a cobra.
-
-    ENTRADAS
-    - nlinhas, ncols: numero de linhas e colunas do tabuleiro
-    - x0, y0: posição da cabeça da cobra
-    - d: sequencia de deslocamentos que levam a posição da cauda da cobra
-         ate a cabeça; o di­gito menos significativo Ã© a direção na cabeça
-
-    """
+def Imprime_Tabuleiro(NumeroLinhas, NumeroColunas, x0, y0, CorpoCobrinha, Maca):
     clear()
     print()
 
-    for x in range(0, ncols + 2):
-        print('#', end='')
+    for x in range(0, NumeroColunas + 2):
+        print('▅', end='')
 
     print()
 
-    for y in range(0, nlinhas):
-        print('#', end='')
+    for y in range(0, NumeroLinhas):
+        print('█', end='')
 
-        for x in range(0, ncols):
-            if (x == maca[0]) and (y == maca[1]):
-                if (maca[0] != x0) or (maca[1] != y0):
-                    print('M', end='')
+        for x in range(0, NumeroColunas):
+            if (x == Maca[0]) and (y == Maca[1]):
+                if (Maca[0] != x0) or (Maca[1] != y0):
+                    print('❣', end='')
             elif x == x0 and y == y0:
-                print('C', end='')
-            elif pos_ocupada(nlinhas, ncols, x, y, x0, y0, d):
-                print('*', end='')
+                print('▣', end='')
+            elif Pos_Ocupada(NumeroLinhas, NumeroColunas, x, y, x0, y0, CorpoCobrinha):
+                print('∎', end='')
             else:
-                print('.', end='')
+                print('∙', end='')
 
-        print('#')
+        print('█')
 
-    for x in range(0, ncols + 2):
-        print('#', end='')
+    for x in range(0, NumeroColunas + 2):
+        print('▅', end='')
 
     print()
     print()
 
-# ======================================================================
 
-
-def move(nlinhas, ncols, x0, y0, d, direcao, maca):
-    """(int, int, int, int, int, int) -> int, int, int
-
-    Move a cobra na direÃ§Ã£o dada.    
-    A funÃ§Ã£o devolve os novos valores de x0, y0 e d (nessa ordem).
-    Se o movimento Ã© impossÃ­vel (pois a cobra vai colidir consigo mesma ou
-    com a parede), entÃ£o a funÃ§Ã£o devolve os antigos valores e imprime a
-    mensagem apropriada: "COLISÃƒO COM SI MESMA" ou "COLISÃƒO COM A PAREDE"
-
-    ENTRADAS
-    - nlinhas, ncols: numero de linhas e colunas do tabuleiro
-    - x0, y0: posiÃ§Ã£o da cabeÃ§a da cobra
-    - d: sequÃªncia de deslocamentos que levam a posiÃ§Ã£o da cauda da cobra
-         atÃ© a cabeÃ§a; o dÃ­gito menos significativo Ã© a direÃ§Ã£o na cabeÃ§a
-    - direcao: direÃ§Ã£o na qual a cabeÃ§a deve ser movida
-
-    """
-
-    ndig = num_digitos(d)
-    novo_d = (d % 10 ** (ndig - 1)) * 10 + direcao
+def Move(NumeroLinhas, NumeroColunas, x0, y0, CorpoCobrinha, Direcao, Maca):
+    ndig = Num_Digitos(CorpoCobrinha)
+    Novo_CorpoCobrinha = (CorpoCobrinha % 10 ** (ndig - 1)) * 10 + Direcao
 
     x0_ant = x0
     y0_ant = y0
 
-    if direcao == 1:    # esquerda
+    if Direcao == 1:
         x0 -= 1
-    elif direcao == 2:  # direita
+    elif Direcao == 2:
         x0 += 1
-    elif direcao == 3:  # cima
+    elif Direcao == 3:
         y0 -= 1
-    elif direcao == 4:  # baixo
+    elif Direcao == 4:
         y0 += 1
     else:
         raise ValueError
 
-    if x0 == maca[0] and y0 == maca[1]:
-        novo_d = novo_d * 10 + 2
-        posicao_maca(nlinhas, ncols, maca)
+    if x0 == Maca[0] and y0 == Maca[1]:
+        Novo_CorpoCobrinha = Novo_CorpoCobrinha * 10 + 2
+        Posicao_Maca(NumeroLinhas, NumeroColunas, Maca)
 
-    if pos_ocupada(nlinhas, ncols, x0, y0, x0_ant, y0_ant, d):
-        print("COLISÃO COM SI MESMA")
-        return x0_ant, y0_ant, d
+    if Pos_Ocupada(NumeroLinhas, NumeroColunas, x0, y0, x0_ant, y0_ant, CorpoCobrinha):
+        print("Colisão consigo mesma")
+        return x0_ant, y0_ant, CorpoCobrinha
 
-    if x0 < 0 or y0 < 0 or x0 >= nlinhas or y0 >= ncols:
-        print("COLISÃƒO COM A PAREDE")
-        return x0_ant, y0_ant, d
+    if x0 < 0 or y0 < 0 or x0 >= NumeroLinhas or y0 >= NumeroColunas:
+        print("Colisão com a parede")
+        return x0_ant, y0_ant, CorpoCobrinha
 
-    return x0, y0, novo_d
+    return x0, y0, Novo_CorpoCobrinha
 
 
-# ======================================================================
 main()
