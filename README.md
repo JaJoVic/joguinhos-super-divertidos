@@ -6,6 +6,31 @@ Projeto desenvolvido durante a matéria Pensamento Computacional, ministrada pel
 
 ## Jogo da Velha
 
+### Sobre o Jogo da Velha
+
+O Jogo da Velha é um joguinho bem simples. Todos nós já o jagamos em algum momento das nossas vidas. Ele consiste em um tabuleiro com três linhas e três colunas. Em cada casa do tabuleiro, marcamos um X ou um O, dependendo do jogador que assumimos ao início da partida. O jogador X sempre começa jogando. Ganha o jogo quem conseguir completar uma linha, uma coluna ou uma diagonal com o seu símbolo (X ou O). Há também o caso de empate, isto é, nenhuma linha, coluna ou diagonal foi preenchida como mesmo símbolo.
+
+### Código
+
+Para escrever um jogo da velha em Python, foi utilizada a biblioteca gráfica Turtle. O código pode ser divido em três partes:
+
+- Configuração inicial;
+- Definições das funções;
+- Execução do jogo.
+
+Na primeira parte, importamos a biblioteca Turtle e criamos a janela de pop-up, que será a nossa tela. É nela que o jogo vai se passar e onde nós realizaremos as jogadas. Além disso, criamos algumas variáveis e lhes atribuimos alguns valores. Nessa parte, são definidas, por exemplo, quem começa jogando (no caso, X).
+
+Em seguida, temos de definir as funções para o jogo. Verificamos que todas as etapas do jogo podem ser vistas como funções. Abaixo, relacionamos essas etapas com as suas respectivas funções.
+
+- Quando vamos jogar um jogo da velha no papel, a primeira coisa que fazemos é riscar o tabuleiro no papel. Para isso, temos a função `DesenhaTabuleiro()` que o desenha na nossa tela assim que iniciamos o jogo.
+- Quando jogamos, riscamos um X ou um O no papel. As funções responsáveis por isso são `DesenhaX(x,y)` e `DesenhaO(x,y)`. Ambas recebem `x` e `y` como parâmetros. Esses, por sua vez, são as coordenadas do nosso clique. Desse modo, é como se dissessemo à função em que lugar da nossa tela queremos desenhar um X ou um O.
+- Naturalmente, abstraímos uma outra função: a função `RegistraJogada(x,y)`. Não paramos para "registrar uma jogada" no papel. Assim que riscamos o tabulueiro, a jogada já é registrada. Contudo, essa função precisa estar no código para, depois, verificarmos se houve algum vencedor. Essa função também recebe `x` e `y` como parâmetros, e se utiliza deles para saber qual foi a jogada e conferir se a jogada foi válida. Se sim, a jogada é registrada; senão a jogada não é registrada.
+- Por fim, ao final do jogo, conferimos se alguém foi ganhador. Para isso, temos várias regrinhas lógicas que verificam se alguma das linhas, das colunas ou das diagonais foi totalmente preechida com o mesmo símbolo.
+
+Uma vez definidas as nossas funções, podemos executá-las. Desenhamos o tabuleiro e chamamos um "listener" para responder a cada clique nosso, ou seja, para executar as nossas funções.
+
+O jogo está pronto! Agora, é só jogar!
+
 ### Notas da atualização 1.1 (João Pedro):
 * Consegui centralizar o "O". Estava tendo problemas com isso.
 * Pesquisando, achei um [código](https://pythonturtle.academy/tic-tac-toe-source-code-included/) interessante. Parece-me simples, mas vejo que pode ser melhorado (ao meu ver). Gostei da ideia de considerar coordenadas (e não pixels) para a tela. Acho que é mais intuitivo. Mesmo assim, mudei as coordenadas: agora, a janela é um plano cartesiano com início em (0,0) e término em (5,5). Também utilizei um `for` para desenhar o tabuleiro. Como alterei as coordenadas da tela, tive também de alterar as coordenadas com base nas quais os Os e os Xs serão desenhados. Por fim, testei, parece-me que o resultado está bom.
